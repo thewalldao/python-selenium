@@ -1,0 +1,8 @@
+pytest
+pytest-html
+allure-pytest
+pytest_bdd
+pytest-xdist
+selenium
+pep8
+mypy
