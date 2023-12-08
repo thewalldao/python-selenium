@@ -10,13 +10,13 @@
 # 8) close browser
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+import selenium.webdriver.common.selenium_manager as selenium_manager
 from selenium.webdriver.chrome.service import Service
 from core.element import Element
 from core.driver import Driver
-from time import sleep
+import logging
 
-
+LOGGER = logging.getLogger(__name__)
 # def test_second(browser):
 
 #     Driver.get("https://opensource-demo.orangehrmlive.com/")
@@ -30,12 +30,21 @@ from time import sleep
 
 
 def test_first(browser):
+    # logging.basicConfig(level=logging.DEBUG)
+    # LOGGER.info(selenium_manager.SeleniumManager().driver_location())
     input_xpath = "//input[@name='%s']"
+    LOGGER.info("Goto https://opensource-demo.orangehrmlive.com/")
     Driver.get("https://opensource-demo.orangehrmlive.com/")
+
+    LOGGER.info("Filling Username Field")
     Element(xpath=input_xpath).set_dynamic_locator(
-        "userasasname").send_keys("Admin")
+        "username").send_keys("Admin")
+
+    LOGGER.info("Filling Passworf Field")
     Element(xpath=input_xpath).set_dynamic_locator(
         "password").send_keys("admin123")
+
+    LOGGER.info("Click to Button")
     Element(xpath="//button").click()
 
     act_title = Driver.title()
